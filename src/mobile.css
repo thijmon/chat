@@ -1,0 +1,49 @@
+body {
+    background-color: #292929 !important;
+}
+
+.navbar a {
+    margin: 0 auto;
+    font-size: 12px;
+}
+.naam input{
+    width: 90% !important;
+}
+
+.infotext {
+    margin-top: 20px;
+    margin-left: 45px;
+}
+
+
+button .navbar-toggler {
+    width: 0px;
+    height: 0px;
+} 
+
+#footer form {
+    display: none !important;
+}
+
+.mobile-menu {
+   text-align: center;
+   color: #A6A6A6;
+    display: flex;flex-direction: row;
+    justify-content: space-between;
+    margin: 50px;
+    margin-top: 16px;
+}
+
+.selected {
+    color: #0D7BE2;
+}
+
+.left h2{
+    display: none !important;
+}
+
+#footer input{
+    width: 90%;
+    margin: 10px;
+}
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../src/mobile.css" media="(max-width: 765px)">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/3ac4fc13cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="#">Chatrooms</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active actief">
+                        <a class="nav-link" href="#">ROOMS <i class="far fa-comment-alt"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">USERS <i class="fas fa-user-friends"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">QUIT <i class="fas fa-sign-out-alt"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="row">
+                <div class="col-md-4 d-flex justify-content-center left hidden-sm">
+                    <h2>54 users online</h2>
+                </div>
+                <div class="col-md-8 d-flex justify-content-start right">
+                    <ul>
+                        <li>
+                            <i class="fas fa-circle online"></i><span id="name"> ThijmenPerdon</span><span id="room">
+                                sports</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <div id="footer">
+            <div class="mobile-menu">
+                <i class="far fa-comment-alt selected"></i>
+                <i class="fas fa-user-friends"></i>
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

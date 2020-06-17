@@ -1,29 +1,93 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-  <title>Chatter</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../src/style.css">
+  <link rel="stylesheet" href="../src/mobile.css" media="(max-width: 765px)">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/3ac4fc13cd.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-3">Chatten</h1>
-      <p class="lead">selecteer je kamer</p>
-    </div>
-  </div>
+<body id="index">
   <div class="container-fluid">
-    <div class="row">
-      <ul class="list-group col">
-        <a href="/javascript" class="list-group-item list-group-item-action">javascript</a>
-        <a href="/swift" class="list-group-item">swift</a>
-        <a href="/css" class="list-group-item">css</a>
-      </ul>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">Chatrooms</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active actief">
+            <a class="nav-link" href="#">ROOMS <i class="far fa-comment-alt"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">USERS <i class="fas fa-user-friends"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">QUIT <i class="fas fa-sign-out-alt"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <div class="row">
+        <div class="col-md-4 d-flex justify-content-center left">
+          <ul>
+            <li>
+              <div>
+                <a href="/javascript">javascript
+                  <div id="beschrijving">alles over javascript</div>
+                </a>
+              </div>
+              <div id="usersin">12 <i class="fas fa-user-friends"></i></div>
+            </li>
+            <li>
+              <div>
+                <a href="/css">css
+                  <div id="beschrijving">alles over css</div>
+                </a>
+              </div>
+              <div id="usersin">9 <i class="fas fa-user-friends"></i></div>
+            </li>
+            <li>
+              <div>
+                <a href="/swift">swift
+                  <div id="beschrijving">alles over swift</div>
+                </a>
+              </div>
+              <div id="usersin">8 <i class="fas fa-user-friends"></i></div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-8 d-flex justify-content-start right">
+          <div class="container-fluid">
+            <div class="row">
+              <ul id="messages"></ul>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="footer">
+      <div class="mobile-menu">
+        <i class="far fa-comment-alt selected"></i>
+        <i class="fas fa-user-friends"></i>
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
+      <form method="post">
+        <input type="text" class="bericht" name="Nickname" placeholder="Type your message" required>
+        <button type="button" class="bericht"><i class="fas fa-paper-plane"></i></button>
+      </form>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -35,7 +99,63 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
     integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
     crossorigin="anonymous"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // js
+    const room = 'javascript';
+    const socket = io('/tech');
+    $('form').submit(() => {
+      let msg = $('#m').val()
+      socket.emit('message', { msg, room });
+      $('#m').val('');
+      return false;
+    });
 
+    socket.on('connect', () => {
+      // emiting to everybody
+      socket.emit('join', { room: room });
+    })
+
+    socket.on('message', (msg) => {
+      $('#messages').append($('<li>').text(msg));
+    });
+    // css
+    const room = 'css';
+    const socket = io('/tech');
+    $('form').submit(() => {
+      let msg = $('#m').val()
+      socket.emit('message', { msg, room });
+      $('#m').val('');
+      return false;
+    });
+
+    socket.on('connect', () => {
+      // emiting to everybody
+      socket.emit('join', { room: room });
+    })
+
+    socket.on('message', (msg) => {
+      $('#messages').append($('<li>').text(msg));
+    });
+    //swift
+    const room = 'swift';
+    const socket = io('/tech');
+    $('form').submit(() => {
+      let msg = $('#m').val()
+      socket.emit('message', { msg, room });
+      $('#m').val('');
+      return false;
+    });
+
+    socket.on('connect', () => {
+      // emiting to everybody
+      socket.emit('join', { room: room });
+    })
+
+    socket.on('message', (msg) => {
+      $('#messages').append($('<li>').text(msg));
+    });
+  </script>
 </body>
 
 </html>
